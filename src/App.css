@@ -32,6 +32,7 @@ h2 {
   background-color: #0071c2;
   align-self: center;
   padding: 10px;
+  margin-top: 20px;
 }
 
 p {
@@ -39,11 +40,7 @@ p {
 }
 
 button {
-  background: #0071c2;
   border: none;
   font-size: 18px;
-  color: #fff;
-  margin: 20px;
-  padding: 10px;
-  text-transform: uppercase;
+  color: #0071c2;
 }

@@ -4,10 +4,16 @@ import './App.css';
 
 function App() {
   const [hotels, setHotels] = useState(data);
+  const [showText, setShowText] = useState(false);
 
   const remoweHotel = (id) => {
-    let newHotels = hotels.filter(hotel => hotel.id !== id);
-    setHotels(newHotels);
+    let newHotels = hotels.filter(hotel => hotel.id !== id)
+    setHotels(newHotels)
+  }
+
+  const showTextClick = (item) => {
+    item.showMore = !item.showMore
+    setShowText(!showText)
   }
 
   return (
@@ -16,8 +22,8 @@ function App() {
         <h1>NYC top {hotels.length} hotels</h1>
       </div>
 
-      {hotels.map(element => {
-        const{id, hotelName, description, image, source} = element;
+      {hotels.map(item => {
+        const{id, hotelName, description, image, source, showMore} = item;
 
         return(
           <div key={id}>
@@ -26,7 +32,8 @@ function App() {
             </div>
 
             <div className='container'>
-              <p>{description}</p>
+              <p>{showMore ? description : description.substring(0, 220) + '...' }
+              <button onClick={() => showTextClick(item)}>{showMore ? 'show less' : 'show more'}</button></p>
             </div>
 
             <div className='container'>
@@ -38,14 +45,14 @@ function App() {
             </div>
 
             <div className='container'>
-              <button onClick={()=> remoweHotel(id)}>Remove</button>
+              <button className='btn' onClick={()=> remoweHotel(id)}>Remove</button>
             </div>
           </div>
         )
       })}
 
       <div className='container'>
-        <button onClick={() => setHotels([])}>Delete all</button>
+        <button className='btn' onClick={() => setHotels([])}>Delete all</button>
       </div>
     </div>
   );
